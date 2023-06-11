@@ -7,20 +7,32 @@ We define a cell sub-crosstalk pairs of two cell types contains two cell subgrou
 
 ## Preparations
 **1. Datasets**  
-Demo datasets are saved in `".//Demo_data"`, including scRNA-seq matrix of mouse endothelial cells `(“.//Demo_data//mat_F002_Endo”)` and microglia cells `(“.//Demo_data//mat_F002_Micro”)` and Known ligand-receptor pairs `(“.//Demo_data//PairsLigRec_simple_mouse.txt”)`.
+Demo datasets are saved in `"..//Demo_data"`, including scRNA-seq matrix of mouse endothelial cells `"mat_F002_Endo"` and microglia cells `"mat_F002_Micro"` and known ligand-receptor pairs (`"PairsLigRec_mouse.txt"` and `"PairsLigRec_human.txt"` ).
 
 **2. Package requirements**  
 Python packages `sklearn`, `numpy`, `pandas`, `statsmodels` are required
 
 ## Codes
-The code for identifying cell sub-crosstalk pairs is in `(“.//Code//identifying_cell_sub-crosstalk_pairs.py”)`, which includes the the following steps:
-1. Reading ligand-receptor pairs and single cell RNA-seq data (function `read_csv`).
-2. Preprocessing single cell RNA-seq data (function `preprocessing_expression_matrix`).
-3. Constructing ligand-receptor matrix `A` (function `construct_ligand_receptor_matrix`).
-4. Identifying candidates of cell sub-crosstalk pairs by coupled non-negative matrix factorization (function `identifying_cellSubCrossTalkPairs_candidates`).
-5. Constructing coupled concensus matrix (function `construct_coupled_concensus_matrix`). 
-6. Merging candidates by hierarchical clustering (function `hierarchical_clustering`).
-7. Adding label of cell sub-crosstalk pairs (function `create_cellSubCrossTalkPairs_label`).
+The scipts of identifying cell sub-crosstalk pairs are in `“..//Code//identify_CSCPs.py”`, which can be executed using following commands:
+```
+python identify_CSCPs.py [-h] [--lrPath LRPATH] [--lrName LRNAME]
+                         [--matPath MATPATH] [--matNameL MATNAMEL] [--matNameR MATNAMER]
+                         [--K K] --outPath OUTPATH
+Arguments:
+  -h, --help           show this help message and exit
+  --lrPath LRPATH      the path of Ligand-Receptor dataset
+  --lrName LRNAME      the name of Ligand-Receptor dataset
+  --matPath MATPATH    the path of expression matrix
+  --matNameL MATNAMEL  the name of expression matrix(XL) of sender cell type
+  --matNameR MATNAMER  the name of expression matrix(XR) of sender cell type
+  --K K                the number of CSCPs. default=2
+  --outPath OUTPATH    the path to save result
+```
+
+Identifying cell sub-crosstalk pairs between mouse endothelial cells and microglia cells:
+```
+python identify_CSCPs.py --lrPath ..//Demo_data --lrName PairsLigRec_mouse.txt --matPath ..//Demo_data --matNameL mat_F002_Endo --matNameR mat_F002_Micro --outPath ..//Demo_data
+```
 
 ## Reference
 Zhang C, Hu Y, Gao L. Defining and identifying cell sub-crosstalk pairs for characterizing cell-cell communication patterns. (under review)
