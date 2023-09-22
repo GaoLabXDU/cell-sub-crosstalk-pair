@@ -35,4 +35,4 @@ python identify_CSCPs.py --lrPath ..//Demo_data --lrName PairsLigRec_mouse.txt -
 ```
 
 ## Reference
-Zhang C, Hu Y, Gao L. Defining and identifying cell sub-crosstalk pairs for characterizing cell-cell communication patterns. (under review)
+Zhang C, Hu Y, Gao L. Defining and identifying cell sub-crosstalk pairs for characterizing cell-cell communication patterns, Scientific Reports, 2023. doi: 10.1038/s41598-023-42883-8
